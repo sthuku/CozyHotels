@@ -1,0 +1,35 @@
+﻿@model CozyHotels.Models.CarType
+@{
+    ViewBag.Title = "Add a Car Type";
+}
+
+@section Scripts{
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+
+<form method="post">
+    <span asp-validation-summary="ModelOnly"></span>
+    <div>
+        <input asp-for="Make" placeholder="Make"/>
+        <span asp-validation-for="Make"></span>
+    </div>
+    <div>
+        <input asp-for="Model" placeholder="Model"/>
+        <span asp-validation-for="Model"></span>
+    </div>
+    <div>
+        <input asp-for="Capacity" placeholder="Maximum Number of Passengers"/>
+        <span asp-validation-for="Capacity"></span>
+    </div>
+    <div>
+        <input asp-for="Charge" placeholder="Charge"/>
+        <span asp-validation-for="Charge"></span>
+    </div>
+    <div>
+        <textarea asp-for="Description" placeholder="Description" cols="40" rows="4"></textarea>
+    </div>
+    <div>
+        <input type="submit" value="Add"/>
+    </div>
+</form>

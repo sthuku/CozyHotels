@@ -1,0 +1,43 @@
+﻿@model CozyHotels.Models.RoomType
+@{
+    ViewBag.Title = "Add a Room Type";
+}
+
+@section Scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+
+<form method="post">
+    <span asp-validation-summary="ModelOnly"></span>
+    <div>
+        <input asp-for="IsRegularRoom" type="checkbox" value="true" />It is a regular room
+        <span asp-validation-for="IsRegularRoom"></span>
+    </div>
+    <div>
+        <input asp-for="Name" placeholder="Room Name" />
+        <span asp-validation-for="Name"></span>
+    </div>
+    <div>
+        <input asp-for="NumberOfRooms" placeholder="Number of Rooms" />
+        <span asp-validation-for="NumberOfRooms"></span>
+    </div>
+    <div>
+        <input asp-for="NumberOfBeds" placeholder="Number of Beds" />
+        <span asp-validation-for="NumberOfBeds"></span>
+    </div>
+    <div>
+        <input asp-for="Capacity" placeholder="Maximum Number of Persons" />
+        <span asp-valiadtion-for="Capacity"></span>
+    </div>
+    <div>
+        <input asp-for="Charge" placeholder="Charge" />
+        <span asp-validation-for="Charge"></span>
+    </div>
+    <div>
+        <textarea asp-for="Description" placeholder="Description" cols="40" rows="4"></textarea>
+    </div>
+    <div>
+        <input type="submit" value="Add" />
+    </div>
+</form>

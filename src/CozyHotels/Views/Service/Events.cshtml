@@ -1,0 +1,81 @@
+﻿@model CozyHotels.ViewModels.ServiceEventsViewModel
+
+@{
+    ViewBag.Title = "Events";
+}
+
+@section scripts{
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+
+<form method="post">
+    <span asp-validation-summary="ModelOnly"></span>
+    @if (ViewBag.RoomRequestStatus != null)
+    {
+        <div>@ViewBag.RoomRequestStatus</div>
+    }
+
+
+    <div>
+        <select asp-for=@Model.OrderEvent.EventType asp-items="Model.EventTypes()"></select>
+        <span asp-validation-for=@Model.OrderEvent.EventType></span>
+    </div>
+
+    <div>
+        <input asp-for=@Model.OrderEvent.DateOfArrival placeholder="Date of Arrival" />
+        <span asp-validation-for=@Model.OrderEvent.DateOfArrival></span>
+    </div>
+    <div>
+        <input asp-for=@Model.OrderEvent.DateOfDeperture placeholder="Date of Deperture" />
+        <span asp-validation-for=@Model.OrderEvent.DateOfDeperture></span>
+    </div>
+
+    <div>
+        <input asp-for=@Model.OrderEvent.NumberOfAttendees placeholder="Number of Attendees" />
+        <span asp-validation-for=@Model.OrderEvent.NumberOfAttendees></span>
+    </div>
+    <div>
+        <input asp-for=@Model.OrderEvent.Accommodation type="checkbox" value="true" />Accommodation
+        <span asp-validation-for=@Model.OrderEvent.Accommodation></span>
+    </div>
+    <div>
+        <textarea asp-for=@Model.OrderEvent.Description cols="40" rows="4" placeholder="Please write us about your event.."></textarea>
+        <span asp-validation-for=@Model.OrderEvent.Description></span>
+    </div>
+    <div>
+        <input asp-for=@Model.Customer.FirstName placeholder="First Name" />
+        <span asp-validation-for=@Model.Customer.FirstName></span>
+    </div>
+    <div>
+        <input asp-for=@Model.Customer.LastName placeholder="Last Name" />
+        <span asp-validation-for=@Model.Customer.LastName></span>
+    </div>
+    <div>
+        <input asp-for=@Model.Customer.Password placeholder="Password" />
+        <span asp-validation-for=@Model.Customer.Password></span>
+    </div>
+    <div>
+        <input type="password" id="ConfirmPassword" placeholder="Confirm Password" />
+        <span id="ConfirmPasswordValidation"></span>
+    </div>
+    <div>
+        <input asp-for=@Model.Customer.Phone placeholder="Phone" />
+    </div>
+    <div>
+        <input asp-for=@Model.Customer.Email placeholder="Email" />
+        <span asp-validation-for=@Model.Customer.Email></span>
+    </div>
+    <div>
+        <input asp-for=@Model.Customer.Age type="checkbox" value="true" />I am 21+ years old.
+        <span asp-validation-for=@Model.Customer.Age></span>
+    </div>
+    <div>
+        <input asp-for=@Model.OrderEvent.TermsAndConditions type="checkbox" value="true" />I understand, I need to bring an Id.
+        <span asp-validation-for=@Model.OrderEvent.TermsAndConditions></span>
+    </div>
+    <div>
+        <input type="submit" value="Send" />
+    </div>
+</form>

@@ -1,0 +1,8 @@
+{
+  "MailSettings": {
+    "ToAddress": "vijaypunna@aol.com"
+  },
+  "ConnectionStrings": {
+    "CozyHotelsContext": "Server=(localdb)\\MSSQLLocalDB;Database=CozyHotelsData;Trusted_Connection=true;MultipleActiveResultSets=true"
+  }
+}

@@ -1,0 +1,20 @@
+﻿@model CozyHotels.Models.RestuarantTable
+@{
+    ViewBag.Title = "Add a Restuarant Table";
+}
+
+@section Scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+
+<form method="post">
+    <span asp-validation-summary="ModelOnly"></span>
+    <div>
+        <input asp-for="TableName" placeholder="Table Name" />
+        <span asp-validation-for="TableName"></span>
+    </div>
+    <div>
+        <input type="submit" value="Add" />
+    </div>
+</form>

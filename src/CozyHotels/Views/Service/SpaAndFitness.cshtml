@@ -1,0 +1,38 @@
+﻿@model CozyHotels.Models.Spa
+
+@{
+    ViewBag.Title = "Spa And Fitness";
+}
+
+@section scripts{
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+
+<form method="post">
+    <span asp-validation-summary="ModelOnly"></span>
+    @if (ViewBag.SpaAppointment != null)
+    {
+        <div>@ViewBag.SpaAppointment</div>
+    }
+    <div>
+        <input asp-for= "CustomerId" placeholder="Customer Number" />
+        <span asp-validation-for="CustomerId"></span>
+    </div>
+    <div>
+        <input asp-for=@Model.Customer.Password placeholder="Password" />
+        <span asp-validation-for=@Model.Customer.Password></span>
+    </div>
+    <div>
+        <input asp-for="Day" placeholder="Date of Service" />
+        <span asp-validation-for="Day"></span>
+    </div>
+    <div>
+        <select asp-for="Time" asp-items="ViewBag.Timings"></select>
+        <span asp-validation-for="Time"></span>
+    </div>
+    <div>
+        <input type="submit" value="Send" />
+    </div>
+</form>

@@ -1,0 +1,17 @@
+﻿body {
+	background-color:white;
+}
+
+.outline{
+			border: solid 1px transparent;
+			padding-left: 10px;
+			padding-right: 10px;
+			color:#563d7c;
+		}
+
+.outline:hover{
+			cursor: pointer;
+			border: 1px solid #563d9f;
+			border-radius: 3px;
+			color:#563d9f;
+		}

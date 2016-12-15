@@ -1,0 +1,56 @@
+﻿@model CozyHotels.ViewModels.ServiceGetCabViewModel
+
+@{
+    ViewBag.Title = "Get Cab";
+}
+
+@section styles{
+}
+
+@section scripts{
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+
+<form method="post">
+    <span asp-validation-summary="ModelOnly"></span>
+
+    @if (ViewBag.CarRequest != null)
+    {
+        <div>@ViewBag.CarRequest</div>
+    }
+
+
+    <div>
+        <input asp-for=@Model.OrderCab.CustomerId placeholder="Customer Number" />
+        <span asp-validation-for=@Model.OrderCab.CustomerId></span>
+    </div>
+    <div>
+        <input asp-for=@Model.Customer.Password placeholder="Password" />
+        <span asp-validation-for=@Model.Customer.Password></span>
+    </div>
+    <div>
+        <input asp-for=@Model.OrderCab.DateOfOrder placeholder="Date of Order" />
+        <span asp-validation-for=@Model.OrderCab.DateOfOrder></span>
+    </div>
+
+    <div>
+        <select asp-for=@Model.OrderCab.CarType asp-items="Model.Cars()"></select>
+        <span asp-validation-for=@Model.OrderCab.CarType></span>
+    </div>
+
+    <div>
+        <input asp-for=@Model.OrderCab.LicenseNumber placeholder="License Number" />
+        <span asp-validation-for=@Model.OrderCab.LicenseNumber></span>
+    </div>
+
+    <div>
+        <input asp-for=@Model.OrderCab.NumberOfDays placeholder="Number of Days" />
+        <span asp-validation-for=@Model.OrderCab.NumberOfDays></span>
+    </div>
+
+    <div>
+        <input type="submit" value="Send" />
+    </div>
+</form>

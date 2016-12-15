@@ -1,0 +1,36 @@
+﻿@model CozyHotels.ViewModels.SupportViewModel
+@{
+    ViewBag.Title = "Support";
+}
+
+@section scripts{
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+
+<h3>Contact Us</h3>
+<form method="post">
+    <span asp-validation-summary="ModelOnly"></span>
+    @if (ViewBag.UserMessage != null)
+    {
+        <div>@ViewBag.UserMessage</div>
+    }
+    <div>
+        <input asp-for="Name" placeholder="Name" />
+        <span asp-validation-for="Name"></span>
+    </div>
+    <div>
+        <input asp-for="Phone" placeholder="Phone" />
+    </div>
+    <div>
+        <input asp-for="Email" placeholder="Email" />
+        <span asp-validation-for="Email"></span>
+    </div>
+    <div>
+        <textarea asp-for="Message" cols="40" rows="4" placeholder="Ask us your Question.."></textarea>
+        <span asp-validation-for="Message"></span>
+    </div>
+    <div>
+        <input type="submit" value="Send" />
+    </div>
+</form>

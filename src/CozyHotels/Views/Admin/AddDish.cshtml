@@ -1,0 +1,40 @@
+﻿@model CozyHotels.Models.Dish
+
+@{
+    ViewBag.Title = "Add Dishes and Drinks";
+    ViewBag.DishCategory = new List<SelectListItem> {
+        new SelectListItem {Value="-1", Text="Category" },
+        new SelectListItem { Value="Food", Text="Food"},
+        new SelectListItem {Value="Deserts", Text="Deserts" },
+        new SelectListItem {Value="Drinks", Text="Drinks" }
+    };
+}
+
+@section Scripts{
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+
+<form method="post">
+    <span asp-validation-summary="ModelOnly"></span>
+    <div>
+        <input asp-for="DishName" placeholder="Dish Name"/>
+        <span asp-validation-for="DishName"></span>
+    </div>
+    <div>
+        <select asp-for="Category" asp-items="ViewBag.DishCategory"></select>
+        <span asp-validation-for="Category"></span>
+    </div>
+    
+    <div>
+        <input asp-for="Charge" placeholder="Charge" />
+        <span asp-validation-for="Charge"></span>
+    </div>
+
+    <div>
+        <textarea asp-for="Description" placeholder="Description" cols="40" rows="4"></textarea>
+    </div>
+    <div>
+        <input type="submit" value="Add"/>
+    </div>
+</form>
