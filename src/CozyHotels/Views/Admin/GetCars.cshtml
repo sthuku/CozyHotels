@@ -1,0 +1,41 @@
+﻿@model CozyHotels.ViewModels.AdminGetCarsViewModel
+
+@{
+    ViewBag.Title = "Car Models";
+}
+
+<div><a asp-controller="Admin" asp-action="AddCar">Add New</a></div>
+<table>
+    <tr>
+        <th>Make</th>
+        <th>Model</th>
+        <th>Capacity</th>
+        <th>Charge</th>
+        <th>Registration Number</th>
+        <th>Available</th>
+        <th>Description</th>
+    </tr>
+
+    @foreach (var item in Model.Cars())
+    {
+        <tr>
+
+            <td>@Model.GetCarType(item.CarTypeId).Make</td>
+            <td>@Model.GetCarType(item.CarTypeId).Model</td>
+            <td>@Model.GetCarType(item.CarTypeId).Capacity</td>
+            <td>@Model.GetCarType(item.CarTypeId).Charge</td>
+            <td>@item.RegistrationNumber</td>
+            @if (item.IsAvailable)
+            {
+                <td>Yes</td>
+            }
+            else
+            {
+                <td>No</td>
+
+            }
+
+            <td>@Model.GetCarType(item.CarTypeId).Description</td>
+        </tr>
+    }
+</table>

@@ -10,26 +10,32 @@
 
 <form method="post">
     <span asp-validation-summary="ModelOnly"></span>
+
+    @if(@ViewBag.CarType != null){
+            <div>@ViewBag.CarType</div>
+    }
+
     <div>
-        <input asp-for="Make" placeholder="Make"/>
+        <input asp-for="Make" placeholder="Make" />
         <span asp-validation-for="Make"></span>
     </div>
     <div>
-        <input asp-for="Model" placeholder="Model"/>
+        <input asp-for="Model" placeholder="Model" />
         <span asp-validation-for="Model"></span>
     </div>
     <div>
-        <input asp-for="Capacity" placeholder="Maximum Number of Passengers"/>
+        <input asp-for="Capacity" placeholder="Maximum Number of Passengers" />
         <span asp-validation-for="Capacity"></span>
     </div>
     <div>
-        <input asp-for="Charge" placeholder="Charge"/>
+        <input asp-for="Charge" placeholder="Charge" />
         <span asp-validation-for="Charge"></span>
     </div>
     <div>
         <textarea asp-for="Description" placeholder="Description" cols="40" rows="4"></textarea>
     </div>
     <div>
-        <input type="submit" value="Add"/>
+        <input type="submit" value="Add" />
     </div>
 </form>
+<div><a asp-controller="Admin" asp-action="GetCarTypes">Car Models</a></div>

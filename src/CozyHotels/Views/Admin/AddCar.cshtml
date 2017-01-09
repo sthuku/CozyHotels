@@ -10,6 +10,10 @@
 
 <form method="post">
     <span asp-validation-summary="ModelOnly"></span>
+    @if (@ViewBag.AddCar != null)
+    {
+        <div>@ViewBag.AddCar</div>
+    }
     <div>
         <select asp-for="CarTypeId" asp-items="ViewBag.CarTypes"></select>
         <span asp-validation-for="CarTypeId"></span>
@@ -22,3 +26,5 @@
         <input type="submit" value="Add"/>
     </div>
 </form>
+
+<div><a asp-controller="Admin" asp-action="GetCars">List of Cars</a></div>

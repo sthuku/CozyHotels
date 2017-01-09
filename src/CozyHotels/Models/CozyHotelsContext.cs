@@ -22,14 +22,17 @@ namespace CozyHotels.Models
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<RoomType> RoomTypes { get; set; }
-        public DbSet<EventHall> EventHalls { get; set; }
+        public DbSet<EventType> EventTypes { get; set; }
         public DbSet<Car> Cars { get; set; }
         public DbSet<CarType> CarTypes { get; set; }
         public DbSet<Dish> Dishes { get; set; }
         public DbSet<OrderCab> CabOrders { get; set; }
         public DbSet<OrderFood> FoodOrders { get; set; }
         public DbSet<Restuarant> Restuarants { get; set; }
+        public DbSet<RestuarantTable> RestuarantTables { get; set; }
         public DbSet<Spa> Spas { get; set; }
+        public DbSet<CustomerCard> CustomerCards { get; set; }
+        public DbSet<Invoice> Invoices { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);

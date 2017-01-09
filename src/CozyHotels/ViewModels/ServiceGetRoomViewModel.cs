@@ -11,20 +11,19 @@ namespace CozyHotels.ViewModels
         public OrderRoom OrderRoom { get; set; }
 
 
-        public List<SelectListItem> Rooms()
+        /*public List<SelectListItem> Rooms()
         {
-            SelectListItem item = new SelectListItem();
             List<SelectListItem> items = new List<SelectListItem>()
             { new SelectListItem { Value = "-1", Text = "Select the type of Room" }};
             foreach (var listItem in RoomTypes)
             {
+                SelectListItem item = new SelectListItem();
                 item.Text = listItem.Name;
                 item.Value = listItem.RoomTypeId.ToString();
                 items.Add(item);
             }
-
             return items;
-        }
+        }*/
 
     }
 }

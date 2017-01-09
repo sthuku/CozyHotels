@@ -10,6 +10,10 @@
 
 <form method="post">
     <span asp-validation-summary="ModelOnly"></span>
+    @if (ViewBag.AddRoom != null)
+    {
+        <div>@ViewBag.AddRoom</div>
+    }
     <div>
         <select asp-for="RoomTypeId" asp-items="ViewBag.RoomTypes"></select>
         <span asp-validation-for="RoomTypeId"></span>
@@ -22,3 +26,4 @@
         <input type="submit" value="Add" />
     </div>
 </form>
+<div><a asp-controller="Admin" asp-action="GetRooms">Added Rooms</a></div>

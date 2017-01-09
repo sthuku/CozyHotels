@@ -1,0 +1,47 @@
+﻿@model IEnumerable<CozyHotels.Models.RoomType>
+
+@{
+    ViewBag.Title = "Rooms and Event Halls";
+}
+
+<div><a asp-controller="Admin" asp-action="AddRoomType">Add New</a></div>
+<table class="table table-bordered">
+    <tr>
+        <th>Name</th>
+        <th>Room Type</th>
+        <th>Number of Rooms</th>
+        <th>Number of Beds</th>
+        <th>Maximum Tenants</th>
+        <th>Charge</th>
+        <th>Description</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Name</td>
+            @if (item.IsRegularRoom)
+            {
+                <td>Room</td>
+            }
+            else
+            {
+                <td>Event Hall</td>
+            }
+            @if (item.NumberOfRooms != null)
+            {
+                <td>@item.NumberOfRooms</td>
+                <td>@item.NumberOfBeds</td>
+
+            }
+            else
+            {
+                <td> - </td>
+                <td> - </td>
+            }
+            <td>@item.Capacity</td>
+            <td>@item.Charge</td>
+            <td>@item.Description</td>
+        </tr>
+    }
+</table>

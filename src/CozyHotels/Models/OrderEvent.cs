@@ -7,7 +7,7 @@ namespace CozyHotels.Models
     {
         [Key]
         public int OrderEventId { get; set; }
-        public int CustomerId { get; set; }
+        public string CustomerEmail { get; set; }
         public int RoomId { get; set; }
         public int RoomTypeId { get; set; }
         public string EventType { get; set; }
@@ -15,7 +15,6 @@ namespace CozyHotels.Models
         public int NumberOfAttendees { get; set; }
         public bool Accommodation { get; set; }
         public string Description { get; set; }
-
 
         [Required(ErrorMessage = "Date of Arrival is required")]
         [DataType(DataType.DateTime)]
@@ -28,8 +27,7 @@ namespace CozyHotels.Models
         public DateTime DateOfDeperture { get; set; }
         public Boolean TermsAndConditions { get; set; }
 
-
-
+        public Guid UniqueOrderId { get; set; }
         public Customer Customer { get; set; }
         public Room Room { get; set; }
     }

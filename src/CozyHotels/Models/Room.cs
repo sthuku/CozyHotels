@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -12,12 +13,11 @@ namespace CozyHotels.Models
         public int RoomTypeId { get; set; }
         [Required]
         public string RoomName { get; set; }
-        public bool IsAvailable { get; set; }
         public RoomType RoomType { get; set; }
 
-        public List<SelectListItem> RoomTypes(List<RoomType> roomTypes)
+        public List<SelectListItem> RoomTypes(IEnumerable<RoomType> roomTypes)
         {
-            SelectListItem item = new SelectListItem();
+            
             List<SelectListItem> items = new List<SelectListItem>
             {
                 new SelectListItem {Value="-1", Text = "Room Type" }
@@ -25,6 +25,7 @@ namespace CozyHotels.Models
 
             foreach (var listItems in roomTypes)
             {
+                SelectListItem item = new SelectListItem();
                 item.Value = listItems.RoomTypeId.ToString();
                 item.Text = listItems.Name;
                 items.Add(item);

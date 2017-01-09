@@ -1,0 +1,29 @@
+﻿@model IEnumerable<CozyHotels.Models.RestuarantTable>
+@{ 
+    ViewBag.Title = "New Restuarant Table";
+}
+
+<div><a asp-controller="Admin" asp-action="AddRestuarantTable">Add New</a></div>
+<table>
+    <tr>
+        <th>Table Number</th>
+        <th>Availability</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>@item.TableName</td>
+            @if (item.IsReserved)
+            {
+                <td>Reserved</td>
+            }
+            else
+            {
+                <td>Not Reserved</td>
+            }
+
+        </tr>
+    }
+</table>

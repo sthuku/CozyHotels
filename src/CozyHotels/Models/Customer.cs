@@ -9,7 +9,6 @@ namespace CozyHotels.Models
     {
         [Key]
         public int CustomerId { get; set; }
-
         [Required]
         public string FirstName { get; set; }
         [Required]
@@ -22,6 +21,17 @@ namespace CozyHotels.Models
         [EmailAddress]
         public string Email { get; set; }
         public Boolean Age { get; set; }
+
+        [Required]
+        public string Address { get; set; }
+        [Required]
+        public string City { get; set; }
+        [Required]
+        public string State { get; set; }
+        [Required]
+        public string Country { get; set; }
+        [Required]
+        public string Zip { get; set; }
 
         public ICollection<OrderRoom> OrderRoom { get; set; }
         public ICollection<OrderEvent> OrderEvent { get; set; }

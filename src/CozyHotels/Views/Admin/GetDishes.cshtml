@@ -1,0 +1,27 @@
+﻿@model IEnumerable<CozyHotels.Models.Dish>
+
+@{ 
+    ViewBag.Title = "Dishes";
+}
+
+<div><a asp-controller="Admin" asp-action="AddDish">Add New</a></div>
+<table>
+    <tr>
+        <th>Dish</th>
+        <th>Category</th>
+        <th>Charge</th>
+        <th>Description</th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>@item.DishName</td>
+            <td>@item.Category</td>
+            <td>@item.Charge</td>
+            <td>@item.Description</td>
+        </tr>
+    }
+</table>

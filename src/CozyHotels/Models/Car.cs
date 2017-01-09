@@ -16,9 +16,8 @@ namespace CozyHotels.Models
         public string RegistrationNumber { get; set; }
         public CarType CarType { get; set; }
 
-        public List<SelectListItem> CarTypes(List<CarType> carTypes)
+        public List<SelectListItem> CarTypes(IEnumerable<CarType> carTypes)
         {
-            SelectListItem item = new SelectListItem();
             List<SelectListItem> items = new List<SelectListItem>
             {
                 new SelectListItem {Value="-1", Text = "Car Model" }
@@ -26,6 +25,7 @@ namespace CozyHotels.Models
 
             foreach (var listItems in carTypes)
             {
+                SelectListItem item = new SelectListItem();
                 item.Value = listItems.CarTypeId.ToString();
                 item.Text = listItems.Make + " " + listItems.Model;
                 items.Add(item);

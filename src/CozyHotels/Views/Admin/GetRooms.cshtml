@@ -1,0 +1,60 @@
+﻿@model CozyHotels.ViewModels.AdminGetRoomsViewModel
+
+@{
+    ViewBag.Title = "Rooms";
+}
+
+<div><a asp-controller="Admin" asp-action="AddRoom">Add New</a></div>
+<table>
+    <tr>
+        <th>Room Number</th>
+        <th>Name</th>
+        <th>Room Type</th>
+        <th>Number of Rooms</th>
+        <th>Number of Beds</th>
+        <th>Charge</th>
+        <th>Capacity</th>
+        <th>Availability</th>
+        <th>Description</th>
+    </tr>
+
+    @foreach (var item in Model.Rooms())
+    {
+        <tr>
+
+            <td>@item.RoomName</td>
+            <td>@Model.GetRoomType(item.RoomTypeId).Name</td>
+            @if (@Model.GetRoomType(item.RoomTypeId).IsRegularRoom)
+            {
+                <td>Room</td>
+            }
+            else
+            {
+                <td>Event Hall</td>
+            }
+
+            @if (Model.GetRoomType(item.RoomTypeId).NumberOfRooms != null)
+            {
+                <td>@Model.GetRoomType(item.RoomTypeId).NumberOfRooms</td>
+                <td>@Model.GetRoomType(item.RoomTypeId).NumberOfBeds</td>
+
+            }
+            else
+            {
+                <td> - </td>
+                <td> - </td>
+            }
+            <td>@Model.GetRoomType(item.RoomTypeId).Charge</td>
+            <td>@Model.GetRoomType(item.RoomTypeId).Capacity</td>
+            @if (@item.IsAvailable)
+            {
+                <td>Available</td>
+            }
+            else
+            {
+                    <td>Not Available</td>
+            }
+            <td>@Model.GetRoomType(item.RoomTypeId).Description</td>
+        </tr>
+    }
+</table>

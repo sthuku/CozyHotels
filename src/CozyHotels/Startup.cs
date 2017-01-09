@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using CozyHotels.Models;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace CozyHotels
 {
     public class Startup
@@ -42,20 +43,30 @@ namespace CozyHotels
             {
                 //to do real mailing services
             }
-
-            services.AddDbContext<CozyHotelsContext>(Options => Options.UseSqlServer(Configuration.GetConnectionString("CozyHotelsContext")));
+            services.AddDbContext<CozyHotelsContext>();
+            services.AddScoped<ICozyHotelsRepository, CozyHotelsRepository>();
+            //services.AddTransient<CozyHotelsContextSeedData>();
+            services.AddLogging();
             services.AddMvc();
             
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(
+            IApplicationBuilder app, 
+            IHostingEnvironment env, 
+            ILoggerFactory loggerFactory)
+            //CozyHotelsContextSeedData seeder)
         {
             loggerFactory.AddConsole();
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                loggerFactory.AddDebug(LogLevel.Information);
+            }else
+            {
+                loggerFactory.AddDebug(LogLevel.Error);
             }
 
             //app.UseDefaultFiles();
@@ -68,6 +79,8 @@ namespace CozyHotels
                     defaults: new { controller = "App", action = "Index" }
                     );
             });
+
+            //seeder.EnsureSeedData().Wait();
         }
     }
 }

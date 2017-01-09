@@ -1,0 +1,26 @@
+﻿@model CozyHotels.ViewModels.AdminGetOrdersViewModel
+@{ 
+    ViewBag.Title = "Car Rentals";
+}
+
+<table>
+    <tr>
+        <th>Make</th>
+        <th>Model</th>
+        <th>Registration Number</th>
+        <th>Customer Name</th>
+        <th>Customer Id</th>
+        <th>Charge</th>
+    </tr>
+    @foreach (var item in Model.GetCabOrders())
+    {
+        <tr>
+            <td>@item.Car.CarType.Make</td>
+            <td>@item.Car.CarType.Model</td>
+            <td>@item.LicenseNumber</td>
+            <td>@item.Customer.FirstName + " " + @item.Customer.LastName</td>
+            <td>@item.Customer.CustomerId</td>
+            <td>@Model.Invoice(item.UniqueOrderId).Charge</td>
+        </tr>
+    }
+</table>

@@ -10,6 +10,10 @@
 
 <form method="post">
     <span asp-validation-summary="ModelOnly"></span>
+    @if (ViewBag.AddRestuarantTable != null)
+    {
+        <div>@ViewBag.AddRestuarantTable</div>
+    }
     <div>
         <input asp-for="TableName" placeholder="Table Name" />
         <span asp-validation-for="TableName"></span>
@@ -18,3 +22,5 @@
         <input type="submit" value="Add" />
     </div>
 </form>
+
+<div><a asp-controller="Admin" asp-action="GetRestuarantTables">Added Tables</a></div>

@@ -25,6 +25,9 @@ namespace CozyHotels.Migrations
 
                     b.Property<bool>("IsAvailable");
 
+                    b.Property<string>("RegistrationNumber")
+                        .IsRequired();
+
                     b.HasKey("CarId");
 
                     b.HasIndex("CarTypeId");
@@ -37,11 +40,18 @@ namespace CozyHotels.Migrations
                     b.Property<int>("CarTypeId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Capacity");
+                    b.Property<int>("Capacity");
 
-                    b.Property<string>("Make");
+                    b.Property<double>("Charge");
 
-                    b.Property<string>("Model");
+                    b.Property<string>("Description")
+                        .IsRequired();
+
+                    b.Property<string>("Make")
+                        .IsRequired();
+
+                    b.Property<string>("Model")
+                        .IsRequired();
 
                     b.HasKey("CarTypeId");
 
@@ -53,7 +63,16 @@ namespace CozyHotels.Migrations
                     b.Property<int>("CustomerId")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("Address")
+                        .IsRequired();
+
                     b.Property<bool>("Age");
+
+                    b.Property<string>("City")
+                        .IsRequired();
+
+                    b.Property<string>("Country")
+                        .IsRequired();
 
                     b.Property<string>("Email")
                         .IsRequired();
@@ -69,9 +88,44 @@ namespace CozyHotels.Migrations
 
                     b.Property<string>("Phone");
 
+                    b.Property<string>("State")
+                        .IsRequired();
+
+                    b.Property<string>("Zip")
+                        .IsRequired();
+
                     b.HasKey("CustomerId");
 
                     b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("CozyHotels.Models.CustomerCard", b =>
+                {
+                    b.Property<int>("EntryId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("BillingZip")
+                        .IsRequired();
+
+                    b.Property<int>("CVV");
+
+                    b.Property<string>("CardNumber")
+                        .IsRequired();
+
+                    b.Property<string>("CustomerEmail");
+
+                    b.Property<int?>("CustomerId");
+
+                    b.Property<DateTime>("ExpiryDate");
+
+                    b.Property<string>("NameOnCard")
+                        .IsRequired();
+
+                    b.HasKey("EntryId");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("CustomerCards");
                 });
 
             modelBuilder.Entity("CozyHotels.Models.Dish", b =>
@@ -83,13 +137,12 @@ namespace CozyHotels.Migrations
 
                     b.Property<double>("Charge");
 
-                    b.Property<string>("DishName");
+                    b.Property<string>("Description");
 
-                    b.Property<int?>("OrderFoodOrderId");
+                    b.Property<string>("DishName")
+                        .IsRequired();
 
                     b.HasKey("DishId");
-
-                    b.HasIndex("OrderFoodOrderId");
 
                     b.ToTable("Dishes");
                 });
@@ -110,6 +163,24 @@ namespace CozyHotels.Migrations
                     b.ToTable("EventHalls");
                 });
 
+            modelBuilder.Entity("CozyHotels.Models.Invoice", b =>
+                {
+                    b.Property<int>("InvoiceId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<double>("Charge");
+
+                    b.Property<int>("EntryId");
+
+                    b.Property<Guid>("ReferenceNumber");
+
+                    b.HasKey("InvoiceId");
+
+                    b.HasIndex("EntryId");
+
+                    b.ToTable("Invoices");
+                });
+
             modelBuilder.Entity("CozyHotels.Models.OrderCab", b =>
                 {
                     b.Property<int>("OrderId")
@@ -117,16 +188,21 @@ namespace CozyHotels.Migrations
 
                     b.Property<int>("CarId");
 
-                    b.Property<string>("CarType");
+                    b.Property<int>("CarTypeId");
 
-                    b.Property<int>("CustomerId");
+                    b.Property<string>("CustomerEmail")
+                        .IsRequired();
+
+                    b.Property<int?>("CustomerId");
 
                     b.Property<DateTime>("DateOfOrder");
 
-                    b.Property<string>("LicenseNumber")
+                    b.Property<DateTime>("DateOfReturn");
+
+                    b.Property<string>("Password")
                         .IsRequired();
 
-                    b.Property<int>("NumberOfDays");
+                    b.Property<Guid>("UniqueOrderId");
 
                     b.HasKey("OrderId");
 
@@ -144,7 +220,9 @@ namespace CozyHotels.Migrations
 
                     b.Property<bool>("Accommodation");
 
-                    b.Property<int>("CustomerId");
+                    b.Property<string>("CustomerEmail");
+
+                    b.Property<int?>("CustomerId");
 
                     b.Property<DateTime>("DateOfArrival");
 
@@ -152,21 +230,23 @@ namespace CozyHotels.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<int>("EventHallId");
-
                     b.Property<string>("EventType");
 
                     b.Property<int>("NumberOfAttendees");
+
+                    b.Property<int>("RoomId");
 
                     b.Property<int>("RoomTypeId");
 
                     b.Property<bool>("TermsAndConditions");
 
+                    b.Property<Guid>("UniqueOrderId");
+
                     b.HasKey("OrderEventId");
 
                     b.HasIndex("CustomerId");
 
-                    b.HasIndex("EventHallId");
+                    b.HasIndex("RoomId");
 
                     b.ToTable("EventOrders");
                 });
@@ -176,13 +256,22 @@ namespace CozyHotels.Migrations
                     b.Property<int>("OrderId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CustomerId");
+                    b.Property<string>("CustomerEmail")
+                        .IsRequired();
+
+                    b.Property<int?>("CustomerId");
+
+                    b.Property<DateTime>("DateOfOrder");
 
                     b.Property<int>("DishId");
+
+                    b.Property<Guid>("UniqueOrderId");
 
                     b.HasKey("OrderId");
 
                     b.HasIndex("CustomerId");
+
+                    b.HasIndex("DishId");
 
                     b.ToTable("FoodOrders");
                 });
@@ -192,15 +281,23 @@ namespace CozyHotels.Migrations
                     b.Property<int>("OrderId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CustomerId");
+                    b.Property<string>("CustomerEmail");
+
+                    b.Property<int?>("CustomerId");
 
                     b.Property<DateTime>("DateOfArrival");
 
+                    b.Property<DateTime>("DateOfDeperture");
+
+                    b.Property<int>("MyProperty");
+
                     b.Property<int>("RoomId");
 
-                    b.Property<string>("RoomType");
+                    b.Property<int>("RoomTypeId");
 
                     b.Property<bool>("TermsAndConditions");
+
+                    b.Property<Guid>("UniqueOrderId");
 
                     b.HasKey("OrderId");
 
@@ -216,13 +313,18 @@ namespace CozyHotels.Migrations
                     b.Property<int>("ReservationId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CustomerId");
+                    b.Property<string>("CustomerEmail")
+                        .IsRequired();
+
+                    b.Property<int?>("CustomerId");
 
                     b.Property<DateTime>("Day");
 
                     b.Property<int>("TableId");
 
                     b.Property<string>("Time");
+
+                    b.Property<Guid>("UniqueOrderId");
 
                     b.HasKey("ReservationId");
 
@@ -240,9 +342,12 @@ namespace CozyHotels.Migrations
 
                     b.Property<bool>("IsReserved");
 
+                    b.Property<string>("TableName")
+                        .IsRequired();
+
                     b.HasKey("TableId");
 
-                    b.ToTable("RestuarantTable");
+                    b.ToTable("RestuarantTables");
                 });
 
             modelBuilder.Entity("CozyHotels.Models.Room", b =>
@@ -250,7 +355,8 @@ namespace CozyHotels.Migrations
                     b.Property<int>("RoomId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<bool>("IsAvailable");
+                    b.Property<string>("RoomName")
+                        .IsRequired();
 
                     b.Property<int>("RoomTypeId");
 
@@ -266,9 +372,7 @@ namespace CozyHotels.Migrations
                     b.Property<int>("RoomTypeId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("BedsSize");
-
-                    b.Property<string>("Capacity");
+                    b.Property<int>("Capacity");
 
                     b.Property<double>("Charge");
 
@@ -276,11 +380,12 @@ namespace CozyHotels.Migrations
 
                     b.Property<bool>("IsRegularRoom");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
-                    b.Property<int>("NumberOfBeds");
+                    b.Property<int?>("NumberOfBeds");
 
-                    b.Property<int>("NumberOfRooms");
+                    b.Property<int?>("NumberOfRooms");
 
                     b.HasKey("RoomTypeId");
 
@@ -292,11 +397,16 @@ namespace CozyHotels.Migrations
                     b.Property<int>("AppointmentId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CustomerId");
+                    b.Property<string>("CustomerEmail")
+                        .IsRequired();
+
+                    b.Property<int?>("CustomerId");
 
                     b.Property<DateTime>("Day");
 
                     b.Property<string>("Time");
+
+                    b.Property<Guid>("UniqueOrderId");
 
                     b.HasKey("AppointmentId");
 
@@ -313,11 +423,11 @@ namespace CozyHotels.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("CozyHotels.Models.Dish", b =>
+            modelBuilder.Entity("CozyHotels.Models.CustomerCard", b =>
                 {
-                    b.HasOne("CozyHotels.Models.OrderFood")
-                        .WithMany("Dishes")
-                        .HasForeignKey("OrderFoodOrderId");
+                    b.HasOne("CozyHotels.Models.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId");
                 });
 
             modelBuilder.Entity("CozyHotels.Models.EventHall", b =>
@@ -325,6 +435,14 @@ namespace CozyHotels.Migrations
                     b.HasOne("CozyHotels.Models.RoomType", "RoomType")
                         .WithMany()
                         .HasForeignKey("RoomTypeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("CozyHotels.Models.Invoice", b =>
+                {
+                    b.HasOne("CozyHotels.Models.CustomerCard", "CustomerCard")
+                        .WithMany()
+                        .HasForeignKey("EntryId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -337,20 +455,18 @@ namespace CozyHotels.Migrations
 
                     b.HasOne("CozyHotels.Models.Customer", "Customer")
                         .WithMany()
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("CustomerId");
                 });
 
             modelBuilder.Entity("CozyHotels.Models.OrderEvent", b =>
                 {
                     b.HasOne("CozyHotels.Models.Customer", "Customer")
                         .WithMany("OrderEvent")
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("CustomerId");
 
-                    b.HasOne("CozyHotels.Models.EventHall", "EventHall")
+                    b.HasOne("CozyHotels.Models.Room", "Room")
                         .WithMany()
-                        .HasForeignKey("EventHallId")
+                        .HasForeignKey("RoomId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -358,7 +474,11 @@ namespace CozyHotels.Migrations
                 {
                     b.HasOne("CozyHotels.Models.Customer", "Customer")
                         .WithMany()
-                        .HasForeignKey("CustomerId")
+                        .HasForeignKey("CustomerId");
+
+                    b.HasOne("CozyHotels.Models.Dish", "Dish")
+                        .WithMany()
+                        .HasForeignKey("DishId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -366,8 +486,7 @@ namespace CozyHotels.Migrations
                 {
                     b.HasOne("CozyHotels.Models.Customer", "Customer")
                         .WithMany("OrderRoom")
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("CustomerId");
 
                     b.HasOne("CozyHotels.Models.Room", "Room")
                         .WithMany()
@@ -379,8 +498,7 @@ namespace CozyHotels.Migrations
                 {
                     b.HasOne("CozyHotels.Models.Customer", "Customer")
                         .WithMany()
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("CustomerId");
 
                     b.HasOne("CozyHotels.Models.RestuarantTable", "Table")
                         .WithMany()
@@ -400,8 +518,7 @@ namespace CozyHotels.Migrations
                 {
                     b.HasOne("CozyHotels.Models.Customer", "Customer")
                         .WithMany()
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("CustomerId");
                 });
         }
     }

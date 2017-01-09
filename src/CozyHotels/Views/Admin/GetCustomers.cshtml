@@ -1,0 +1,30 @@
+﻿@model IEnumerable<CozyHotels.Models.Customer>
+@{ 
+    ViewBag.Title = "All Customers";
+}
+
+<div><input type="search" id="CustomerSearch"/><input type="button" value="search"/></div>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Address</th>
+        <th>City and State</th>
+        <th>Country and Zip</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.FirstName + " " + @item.LastName</td>
+            <td>@item.Email</td>
+            <td>@item.Phone</td>
+            <td>@item.Address</td>
+            <td>@item.City+" "+@item.State</td>
+            <td>@item.Country + " " +@item.Zip</td>
+            <td><a asp-controller="admin" asp-Action="GetCustomerOrders" asp-route-id=@item.CustomerId>Orders</a></td>
+        </tr>
+    }
+</table>

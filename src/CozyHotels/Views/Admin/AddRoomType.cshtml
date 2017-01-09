@@ -10,6 +10,10 @@
 
 <form method="post">
     <span asp-validation-summary="ModelOnly"></span>
+    @if (ViewBag.AddRoomType != null)
+    {
+        <div>@ViewBag.AddRoomType</div>
+    }
     <div>
         <input asp-for="IsRegularRoom" type="checkbox" value="true" />It is a regular room
         <span asp-validation-for="IsRegularRoom"></span>
@@ -41,3 +45,5 @@
         <input type="submit" value="Add" />
     </div>
 </form>
+
+<div><a asp-controller="Admin" asp-action="GetRoomTypes">List of Type of Rooms</a></div>
