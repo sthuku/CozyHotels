@@ -11,7 +11,7 @@ namespace CozyHotels.ViewModels
         public OrderRoom OrderRoom { get; set; }
 
 
-        /*public List<SelectListItem> Rooms()
+        public List<SelectListItem> Rooms()
         {
             List<SelectListItem> items = new List<SelectListItem>()
             { new SelectListItem { Value = "-1", Text = "Select the type of Room" }};
@@ -23,7 +23,7 @@ namespace CozyHotels.ViewModels
                 items.Add(item);
             }
             return items;
-        }*/
+        }
 
     }
 }

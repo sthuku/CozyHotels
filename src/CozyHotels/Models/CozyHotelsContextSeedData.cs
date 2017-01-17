@@ -39,7 +39,7 @@ namespace CozyHotels.Models
 
                 var room = new Room()
                 {
-                    RoomName="CH101", RoomTypeId=1
+                    RoomName="CH101", RoomTypeId=1, IsAvailable=true
                 };
                 _context.Rooms.Add(room);
 

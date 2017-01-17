@@ -13,98 +13,54 @@ namespace CozyHotels.Controllers.Web
     public class ServiceController:Controller
     {
         private CozyHotelsContext _context;
-        private Room _room;
-        private ICozyHotelsRepository _repository;
-        private Car _car;
 
-        public ServiceController(CozyHotelsContext context, ICozyHotelsRepository repository)
+        public ServiceController(CozyHotelsContext context)
         {
-
-            _car = new Car();
-            _room = new Room();
             _context = context;
-            _repository = repository;
         }
 
         public IActionResult GetRoom()
         {
-            /*var customer = new Customer();
+            var customer = new Customer();
             var roomType = new List<RoomType>();
             var orderRoom = new OrderRoom();
             ServiceGetRoomViewModel model = new ServiceGetRoomViewModel() {
                 Customer = customer, RoomTypes=roomType, OrderRoom=orderRoom
-            };*/
+            };
 
-            ViewBag.RoomTypes = _room.RoomTypes(_repository.GetAllRoomTypes());
-            return View(new ServiceGetRoomViewModel());
+            return View(model);
         }
 
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public IActionResult GetRoom(ServiceGetRoomViewModel roomModel)
+        public IActionResult GetRoom(ServiceGetRoomViewModel model)
         {
-            if (roomModel.OrderRoom.RoomTypeId == -1)
+            if (model.OrderRoom.RoomTypeId == -1)
                ModelState.AddModelError("OrderRoom.RoomTypeId", "Please select the Room Type");
 
-            if (roomModel.Customer.Age == false)
+            if (model.Customer.Age == false)
                 ModelState.AddModelError("Customer.Age", "Sorry you must not be below 21 years old");
 
-            if (roomModel.OrderRoom.TermsAndConditions == false)
+            if (model.OrderRoom.TermsAndConditions == false)
                 ModelState.AddModelError("OrderRoom.TermsAndConditions", "We need to see your Id");
 
 
             if (ModelState.IsValid)
             {
-                var check = _repository.GetAllCustomers()
-                    .Where(q => q.Email == roomModel.Customer.Email);
-                if (check.Count() > 0)
-                    ViewBag.GetRoom = "Email is already taken! \nIf you ever booked a room or event, you can log in!";
-                else
-                {
-                    _repository.AddCustomer(roomModel.Customer);
-                    if (_repository.SaveChanges())
-                    {
-                        var roomOrders = _repository.GetAllRoomOrders()
-                            .Where(q =>
-                        (q.DateOfArrival >= roomModel.OrderRoom.DateOfArrival &&
-                        q.DateOfArrival <= roomModel.OrderRoom.DateOfDeperture) ||
-                        (q.DateOfDeperture >= roomModel.OrderRoom.DateOfArrival &&
-                        q.DateOfDeperture <= q.DateOfDeperture));
-                        var rooms = _repository.GetAllRooms();
-
-                        foreach (var order in roomOrders)
-                        {
-                            rooms = rooms.Where(q => q.RoomId != order.RoomId);
-                        }
-
-
-                        if (rooms.Count() > 0)
-                        {
-                            roomModel.OrderRoom.RoomId = rooms.First().RoomId;
-                            roomModel.OrderRoom.CustomerEmail = roomModel.Customer.Email;
-                            roomModel.OrderRoom.UniqueOrderId = Guid.NewGuid();
-                            _repository.AddRoomOrder(roomModel.OrderRoom);
-                            if (_repository.SaveChanges())
-                            {
-                                ViewBag.GetRoom = "Thank you!";
-                                ModelState.Clear();
-                            }
-                            else
-                                ViewBag.GetRoom = "Oops! Could not place order";
-                        }
-                        else
-                        {
-                            ViewBag.GetRoom = "Rooms are not available";
-                        }
-
-                    }
-                    else
-                        ViewBag.GetRoom = "Oops! Could not Save data";
-                }
+                ViewBag.RoomRequestStatus = "Thanks!";
+                ModelState.Clear();
             }
 
-            ViewBag.RoomTypes = _room.RoomTypes(_repository.GetAllRoomTypes());
-            return View(new ServiceGetRoomViewModel());
+            var customer = new Customer();
+            var roomType = new List<RoomType>();
+            var orderRoom = new OrderRoom();
+            ServiceGetRoomViewModel model2 = new ServiceGetRoomViewModel()
+            {
+                Customer = customer,
+                RoomTypes = roomType,
+                OrderRoom = orderRoom
+            };
+            return View(model2);
             
         }
 
@@ -141,58 +97,35 @@ namespace CozyHotels.Controllers.Web
 
         public IActionResult GetCab()
         {
-            ViewBag.Cars = _car.CarTypes(_repository.GetAllCarTypes()); 
-            return View();
+            var orderCab = new OrderCab();
+            var carTypes = new List<CarType>();
+            var model = new ServiceGetCabViewModel() {
+                OrderCab=orderCab,CarTypes=carTypes
+            };
+            return View(model);
         }
 
         [HttpPost]
-        public IActionResult GetCab(OrderCab carModel)
+        public IActionResult GetCab(ServiceGetCabViewModel model)
         {
-            if (carModel.CarTypeId == -1)
+            if (model.OrderCab.CarTypeId == -1)
               ModelState.AddModelError("OrderCab.CarTypeId", "Please select the Room Type");
+
+
             if (ModelState.IsValid)
             {
-                
-                var check = _repository.GetAllCustomers().Single(q => q.Email == carModel.CustomerEmail);
-
-                if (check.Password == carModel.Password)
-                {
-                    var cabOrders = _repository.GetAllCabOrders()
-                            .Where(q =>
-                        (q.DateOfOrder >= carModel.DateOfOrder &&
-                        q.DateOfOrder <= carModel.DateOfReturn) ||
-                        (q.DateOfReturn >= carModel.DateOfOrder &&
-                        q.DateOfReturn <= q.DateOfReturn) && q.CarTypeId == carModel.CarTypeId);
-                    var cars = _repository.GetAllCars();
-
-                    foreach (var order in cabOrders)
-                    {
-                        cars = cars.Where(q => q.CarId != order.CarId);
-                    }
-
-                    if (cars.Count() > 0)
-                    {
-                        carModel.CarId = cars.First().CarId;
-                        carModel.UniqueOrderId = Guid.NewGuid();
-                        _repository.AddCabOrder(carModel);
-                        if (_repository.SaveChanges())
-                        {
-                            ViewBag.GetCab = "Please get keys at the front desk for " + cars.First().RegistrationNumber;
-                            ModelState.Clear();
-                        }
-                    }
-                    else
-                    {
-                        ViewBag.GetCab = "Sorry selected cars are not available at given dates"; 
-                    }
-                }
-                else
-                    ViewBag.GetCab = "Invalid Email or Password";
-
+                ViewBag.CarRequest = "Thanks!";
+                ModelState.Clear();
             }
 
-            ViewBag.Cars = _car.CarTypes(_repository.GetAllCarTypes());
-            return View();
+            var orderCab = new OrderCab();
+            var carTypes = new List<CarType>();
+            var model2 = new ServiceGetCabViewModel()
+            {
+                OrderCab = orderCab,
+                CarTypes = carTypes
+            };
+            return View(model2);
         }
 
         public IActionResult Events()
@@ -225,7 +158,7 @@ namespace CozyHotels.Controllers.Web
             }
 
             var customer = new Customer();
-            var even = new EventType();
+            var even = new EventHall();
             var orderEvent = new OrderEvent();
             ServiceEventsViewModel model2 = new ServiceEventsViewModel()
             {

@@ -1,4 +1,4 @@
-﻿@model CozyHotels.Models.OrderCab
+﻿@model CozyHotels.ViewModels.ServiceGetCabViewModel
 
 @{
     ViewBag.Title = "Get Cab";
@@ -16,33 +16,38 @@
 <form method="post">
     <span asp-validation-summary="ModelOnly"></span>
 
-    @if (ViewBag.GetCab != null)
+    @if (ViewBag.CarRequest != null)
     {
-        <div>@ViewBag.GetCab</div>
+        <div>@ViewBag.CarRequest</div>
     }
 
 
     <div>
-        <input asp-for="CustomerEmail" placeholder="Email" />
-        <span asp-validation-for="CustomerEmail"></span>
+        <input asp-for=@Model.OrderCab.CustomerId placeholder="Customer Number" />
+        <span asp-validation-for=@Model.OrderCab.CustomerId></span>
     </div>
     <div>
-        <input asp-for="Password" placeholder="Password" />
-        <span asp-validation-for="Password"></span>
+        <input asp-for=@Model.Customer.Password placeholder="Password" />
+        <span asp-validation-for=@Model.Customer.Password></span>
     </div>
     <div>
-        <input asp-for="DateOfOrder" placeholder="Date of Order" />
-        <span asp-validation-for="DateOfOrder"></span>
-    </div>
-
-    <div>
-        <input asp-for="DateOfReturn" placeholder="Date of Return" />
-        <span asp-validation-for="DateOfReturn"></span>
+        <input asp-for=@Model.OrderCab.DateOfOrder placeholder="Date of Order" />
+        <span asp-validation-for=@Model.OrderCab.DateOfOrder></span>
     </div>
 
     <div>
-        <select asp-for="CarTypeId" asp-items="ViewBag.Cars"></select>
-        <span asp-validation-for="CarTypeId"></span>
+        <select asp-for=@Model.OrderCab.CarTypeId asp-items="Model.Cars()"></select>
+        <span asp-validation-for=@Model.OrderCab.CarTypeId></span>
+    </div>
+
+    <div>
+        <input asp-for=@Model.OrderCab.LicenseNumber placeholder="License Number" />
+        <span asp-validation-for=@Model.OrderCab.LicenseNumber></span>
+    </div>
+
+    <div>
+        <input asp-for=@Model.OrderCab.NumberOfDays placeholder="Number of Days" />
+        <span asp-validation-for=@Model.OrderCab.NumberOfDays></span>
     </div>
 
     <div>

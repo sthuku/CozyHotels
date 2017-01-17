@@ -9,11 +9,9 @@ namespace CozyHotels.Models
         [Key]
         public int OrderId { get; set; }
         [Required]
-        public string CustomerEmail { get; set; }
+        public int CustomerId { get; set; }
         public int DishId { get; set; }
-        public DateTime DateOfOrder { get; set; }
-        public Guid UniqueOrderId { get; set; }
         public Customer Customer { get; set; }
-        public Dish Dish { get; set; }
+        public IEnumerable<Dish> Dishes { get; set; }
     }
 }

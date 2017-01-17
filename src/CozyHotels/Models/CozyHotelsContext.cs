@@ -22,7 +22,7 @@ namespace CozyHotels.Models
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<RoomType> RoomTypes { get; set; }
-        public DbSet<EventType> EventTypes { get; set; }
+        public DbSet<EventHall> EventHalls { get; set; }
         public DbSet<Car> Cars { get; set; }
         public DbSet<CarType> CarTypes { get; set; }
         public DbSet<Dish> Dishes { get; set; }
