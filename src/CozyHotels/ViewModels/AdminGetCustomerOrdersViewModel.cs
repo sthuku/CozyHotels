@@ -48,11 +48,24 @@ namespace CozyHotels.ViewModels
             return _repository.GetAllSpaAppointments().Where(q => q.CustomerId == _id);
         }
 
-
+        public Invoice Invoice(Guid id)
+        {
+            return _repository.GetAllInvoices().Single(q => q.ReferenceNumber == id);
+        }
 
         public IEnumerable<CustomerCard> CustomerCards()
         {
             return _repository.GetAllCustomerCards().Where(q => q.CustomerId == _id);
+        }
+
+        public Car Car(int id)
+        {
+            return _repository.GetAllCars().Single(q => q.CarId == id);
+        }
+
+        public CarType CarType(int id)
+        {
+            return _repository.GetAllCarTypes().Single(q => q.CarTypeId == id);
         }
     }
 }

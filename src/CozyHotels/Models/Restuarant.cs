@@ -13,6 +13,8 @@ namespace CozyHotels.Models
         [Required]
         public DateTime Day { get; set; }
         public string Time { get; set; }
+
+        public Guid UniqueOrderId { get; set; }
         public RestuarantTable Table { get; set; }
         public Customer Customer { get; set; }
     }

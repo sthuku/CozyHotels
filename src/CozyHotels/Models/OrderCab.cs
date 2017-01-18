@@ -16,6 +16,8 @@ namespace CozyHotels.Models
         [Required]
         public string LicenseNumber { get; set; }
         public int NumberOfDays { get; set; }
+
+        public Guid UniqueOrderId { get; set; }
         public Customer Customer { get; set; }
         public Car Car { get; set; }
     }

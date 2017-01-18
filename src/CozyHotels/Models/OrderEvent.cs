@@ -16,7 +16,6 @@ namespace CozyHotels.Models
         public bool Accommodation { get; set; }
         public string Description { get; set; }
 
-
         [Required(ErrorMessage = "Date of Arrival is required")]
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
@@ -27,6 +26,8 @@ namespace CozyHotels.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime DateOfDeperture { get; set; }
         public Boolean TermsAndConditions { get; set; }
+
+        public Guid UniqueOrderId { get; set; }
         public Customer Customer { get; set; }
         public Room Room { get; set; }
     }

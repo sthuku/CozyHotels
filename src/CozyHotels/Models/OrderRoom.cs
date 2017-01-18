@@ -19,6 +19,8 @@ namespace CozyHotels.Models
 
         public DateTime? DateOfDeperture { get; set; }
         public Boolean TermsAndConditions { get; set; }
+
+        public Guid UniqueOrderId { get; set; }
         public Customer Customer { get; set; }
         public Room Room { get; set; }
     }

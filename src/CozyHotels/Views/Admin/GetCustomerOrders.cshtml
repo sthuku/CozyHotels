@@ -9,15 +9,18 @@
 {
     <table>
         <tr>
-            <th></th>
+            <th>Room Name</th>
+            <th>Date of Arrival</th>
+            <th>Date of Deperture</th>
+            <th>Charge</th>
         </tr>
         @foreach (var item in Model.RoomOrders())
         {
         <tr>
-            <td>@item.DateOfArrival</td>
             <td>@item.Room.RoomName</td>
+            <td>@item.DateOfArrival</td>
             <td>@item.DateOfDeperture</td>
-            <td></td>
+            <td>@Model.Invoice(item.UniqueOrderId).Charge</td>
         </tr>
         }
     </table>
@@ -26,3 +29,27 @@ else
 {
         <div>No Orders</div>
     }
+
+@if(Model.CabOrders().Count() > 0)
+{
+    <table>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+        @foreach (var item in Model.CabOrders())
+        {
+            <tr>
+                <td>@Model.CarType(Model.Car(item.CarId).CarTypeId).Make</td>
+                <td>@Model.CarType(Model.Car(item.CarId).CarTypeId).Model</td>
+                <td>@Model.Car(item.CarId).RegistrationNumber</td>
+                <td>@item.DateOfOrder</td>
+                <td>@Model.Invoice(item.UniqueOrderId).Charge</td> 
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <div>No Orders</div>
+}

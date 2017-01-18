@@ -201,6 +201,8 @@ namespace CozyHotels.Migrations
 
                     b.Property<int>("NumberOfDays");
 
+                    b.Property<Guid>("UniqueOrderId");
+
                     b.HasKey("OrderId");
 
                     b.HasIndex("CarId");
@@ -235,6 +237,8 @@ namespace CozyHotels.Migrations
 
                     b.Property<bool>("TermsAndConditions");
 
+                    b.Property<Guid>("UniqueOrderId");
+
                     b.HasKey("OrderEventId");
 
                     b.HasIndex("CustomerId");
@@ -252,6 +256,8 @@ namespace CozyHotels.Migrations
                     b.Property<int>("CustomerId");
 
                     b.Property<int>("DishId");
+
+                    b.Property<Guid>("UniqueOrderId");
 
                     b.HasKey("OrderId");
 
@@ -277,6 +283,8 @@ namespace CozyHotels.Migrations
 
                     b.Property<bool>("TermsAndConditions");
 
+                    b.Property<Guid>("UniqueOrderId");
+
                     b.HasKey("OrderId");
 
                     b.HasIndex("CustomerId");
@@ -298,6 +306,8 @@ namespace CozyHotels.Migrations
                     b.Property<int>("TableId");
 
                     b.Property<string>("Time");
+
+                    b.Property<Guid>("UniqueOrderId");
 
                     b.HasKey("ReservationId");
 
@@ -377,6 +387,8 @@ namespace CozyHotels.Migrations
                     b.Property<DateTime>("Day");
 
                     b.Property<string>("Time");
+
+                    b.Property<Guid>("UniqueOrderId");
 
                     b.HasKey("AppointmentId");
 
