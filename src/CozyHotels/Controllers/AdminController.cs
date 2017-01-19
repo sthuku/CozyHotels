@@ -268,5 +268,25 @@ namespace CozyHotels.Controllers
         {
             return View(new AdminGetCustomerOrdersViewModel(_repository, id));
         }
+
+        public IActionResult GetCabOrders()
+        {
+            return View(new AdminGetOrdersViewModel(_repository));
+        }
+
+        public IActionResult GetRoomOrders()
+        {
+            return View(new AdminGetOrdersViewModel(_repository));
+        }
+
+        public IActionResult GetEventOrders()
+        {
+            return View(new AdminGetOrdersViewModel(_repository));
+        }
+
+        public IActionResult GetFoodOrders()
+        {
+            return View(new AdminGetOrdersViewModel(_repository));
+        }
     }
 }

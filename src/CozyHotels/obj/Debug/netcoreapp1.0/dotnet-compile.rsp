@@ -218,6 +218,8 @@ C:\Users\vijay\Desktop\CozyHotels\src\CozyHotels\Migrations\20161102072226_v7.cs
 C:\Users\vijay\Desktop\CozyHotels\src\CozyHotels\Migrations\20161102072226_v7.Designer.cs
 C:\Users\vijay\Desktop\CozyHotels\src\CozyHotels\Migrations\20161102073844_v8.cs
 C:\Users\vijay\Desktop\CozyHotels\src\CozyHotels\Migrations\20161102073844_v8.Designer.cs
+C:\Users\vijay\Desktop\CozyHotels\src\CozyHotels\Migrations\20161103003718_v9.cs
+C:\Users\vijay\Desktop\CozyHotels\src\CozyHotels\Migrations\20161103003718_v9.Designer.cs
 C:\Users\vijay\Desktop\CozyHotels\src\CozyHotels\Migrations\CozyHotelsContextModelSnapshot.cs
 C:\Users\vijay\Desktop\CozyHotels\src\CozyHotels\Models\Car.cs
 C:\Users\vijay\Desktop\CozyHotels\src\CozyHotels\Models\CarType.cs
@@ -243,6 +245,7 @@ C:\Users\vijay\Desktop\CozyHotels\src\CozyHotels\Services\DebugMailService.cs
 C:\Users\vijay\Desktop\CozyHotels\src\CozyHotels\Services\IMailServices.cs
 C:\Users\vijay\Desktop\CozyHotels\src\CozyHotels\ViewModels\AdminGetCarsViewModel.cs
 C:\Users\vijay\Desktop\CozyHotels\src\CozyHotels\ViewModels\AdminGetCustomerOrdersViewModel.cs
+C:\Users\vijay\Desktop\CozyHotels\src\CozyHotels\ViewModels\AdminGetOrdersViewModel.cs
 C:\Users\vijay\Desktop\CozyHotels\src\CozyHotels\ViewModels\AdminGetRoomsViewModel.cs
 C:\Users\vijay\Desktop\CozyHotels\src\CozyHotels\ViewModels\ServiceEventsViewModel.cs
 C:\Users\vijay\Desktop\CozyHotels\src\CozyHotels\ViewModels\ServiceGetCabViewModel.cs

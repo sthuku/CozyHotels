@@ -11,9 +11,9 @@ namespace CozyHotels.Models
         [Required]
         public int CustomerId { get; set; }
         public int DishId { get; set; }
-
+        public DateTime DateOfOrder { get; set; }
         public Guid UniqueOrderId { get; set; }
         public Customer Customer { get; set; }
-        public IEnumerable<Dish> Dishes { get; set; }
+        public Dish Dishes { get; set; }
     }
 }

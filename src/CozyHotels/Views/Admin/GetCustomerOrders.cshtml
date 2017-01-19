@@ -30,6 +30,37 @@ else
         <div>No Orders</div>
     }
 
+<h5>Event Orders</h5>
+
+@if (Model.EventOrders().Count() > 0)
+{
+    <table>
+        <tr>
+            <th>Event</th>
+            <th>Room Name</th>
+            <th>Number of Attendees</th>
+            <th>Arrived</th>
+            <th>Deported</th>
+            <th>Charge</th>
+        </tr>
+        @foreach (var item in Model.EventOrders())
+        {
+            <tr>
+                <td>@item.EventType</td>
+                <td>@item.Room.RoomName</td>
+                <td>@item.NumberOfAttendees</td>
+                <td>@item.DateOfArrival</td>
+                <td>@item.DateOfDeperture</td>
+                <td>@Model.Invoice(item.UniqueOrderId).Charge</td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+        <div>No Orders</div>
+}
+
 @if(Model.CabOrders().Count() > 0)
 {
     <table>
@@ -52,4 +83,68 @@ else
 else
 {
     <div>No Orders</div>
+}
+
+<h5>Food Orders</h5>
+@if (Model.FoodOrders().Count() > 0)
+{
+    <table>
+        <tr>
+            <th></th>
+        </tr>
+        @foreach (var item in Model.FoodOrders())
+        {
+            <tr>
+                <td>@Model.Dish(item.DishId).DishName</td>
+                <td>@Model.Dish(item.DishId).Category</td>
+                <td>@Model.Invoice(item.UniqueOrderId).Charge</td>
+                <td>@item.DateOfOrder</td>
+            </tr>
+        }
+    </table>
+}else{
+    <div>No orders</div>
+}
+
+<h5>Restuarant Reservations</h5>
+@if (Model.RestuarantTableReservations().Count()>0)
+{
+    <table>
+        <tr>
+            <th>Table Number</th>
+            <th>Date</th>
+            <th>Time</th>
+            <td>Charge</td>
+        </tr>
+        @foreach (var item in Model.RestuarantTableReservations())
+        {
+            <tr>
+                <td>@item.Table.TableName</td>
+                <td>@item.Day</td>
+                <td>@item.Time</td>
+                <td>@Model.Invoice(@item.UniqueOrderId).Charge</td>
+            </tr>
+        }
+    </table>
+}
+else {
+    <div>No Reservations</div>
+}
+
+<h5>Spa and Fitness Appointments</h5>
+@if (Model.SpaAppointments().Count() > 0)
+{
+    <table>
+        <tr>
+            <th></th>
+        </tr>
+        @foreach (var item in Model.SpaAppointments())
+        {
+            <tr>
+                <td>@item.Day</td>
+                <td>@item.Time</td>
+                <td>@Model.Invoice(item.UniqueOrderId)</td>
+            </tr>
+        }
+    </table>
 }

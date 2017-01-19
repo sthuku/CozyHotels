@@ -255,6 +255,8 @@ namespace CozyHotels.Migrations
 
                     b.Property<int>("CustomerId");
 
+                    b.Property<DateTime>("DateOfOrder");
+
                     b.Property<int>("DishId");
 
                     b.Property<Guid>("UniqueOrderId");

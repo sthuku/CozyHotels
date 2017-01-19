@@ -67,5 +67,10 @@ namespace CozyHotels.ViewModels
         {
             return _repository.GetAllCarTypes().Single(q => q.CarTypeId == id);
         }
+
+        public Dish Dish(int id)
+        { 
+            return _repository.GetAllDishes().Single(q => q.DishId == id);
+        }
     }
 }

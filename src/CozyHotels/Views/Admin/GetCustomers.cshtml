@@ -24,7 +24,7 @@
             <td>@item.Address</td>
             <td>@item.City+" "+@item.State</td>
             <td>@item.Country + " " +@item.Zip</td>
-            <td><a asp-controller="admin" asp-Action="CustomerOrders" asp-id=@item.CustomerId></a></td>
+            <td><a asp-controller="admin" asp-Action="CustomerOrders" asp-id=@item.CustomerId>Orders</a></td>
         </tr>
     }
 </table>
