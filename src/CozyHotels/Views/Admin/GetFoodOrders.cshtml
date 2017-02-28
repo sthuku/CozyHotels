@@ -1,23 +1,23 @@
 ﻿@model CozyHotels.ViewModels.AdminGetOrdersViewModel
 @{
-    ViewBag.Title = "Room Orders";
+    ViewBag.Title = "Food Orders";
 }
 
 <table>
     <tr>
-        <th>Event Hall Name</th>
-        <th>Hall Type</th>
+        <th>Dish Name</th>
         <th>Customer Name</th>
         <th>Customer Id</th>
+        <th>Date of Order</th>
         <th>Charge</th>
     </tr>
     @foreach (var item in Model.GetFoodOrders())
     {
         <tr>
-            <td>@item..Room.RoomName</td>
-            <td>@item.Room.RoomType.Name</td>
+            <td>@item.Dish.DishName</td>
             <td>@item.Customer.FirstName + " "+@item.Customer.LastName</td>
             <td>@item.Customer.CustomerId</td>
+            <td>@item.DateOfOrder</td>
             <td>@Model.Invoice(item.UniqueOrderId).Charge</td>
         </tr>
     }

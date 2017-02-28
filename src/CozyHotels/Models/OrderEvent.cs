@@ -7,7 +7,7 @@ namespace CozyHotels.Models
     {
         [Key]
         public int OrderEventId { get; set; }
-        public int CustomerId { get; set; }
+        public string CustomerEmail { get; set; }
         public int RoomId { get; set; }
         public int RoomTypeId { get; set; }
         public string EventType { get; set; }

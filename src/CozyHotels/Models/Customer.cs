@@ -9,7 +9,6 @@ namespace CozyHotels.Models
     {
         [Key]
         public int CustomerId { get; set; }
-
         [Required]
         public string FirstName { get; set; }
         [Required]

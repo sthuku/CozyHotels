@@ -11,7 +11,7 @@ namespace CozyHotels.Models
     {
         [Key]
         public int EntryId { get; set; }
-        public int CustomerId { get; set; }
+        public string CustomerEmail { get; set; }
         [Required]
         [CreditCard]
         public string CardNumber { get; set; }

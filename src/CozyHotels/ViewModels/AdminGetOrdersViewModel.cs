@@ -35,6 +35,16 @@ namespace CozyHotels.ViewModels
             return _repository.GetAllFoodOrders();
         }
 
+        public IEnumerable<Restuarant> GetRestuarantReservations()
+        {
+            return _repository.GetAllRestuarantReservations();
+        }
+
+        public IEnumerable<Spa> GetSpaAppointments()
+        {
+            return _repository.GetAllSpaAppointments();
+        }
+
         public Invoice Invoice(Guid id)
         {
             return _repository.GetAllInvoices().Single(q => q.ReferenceNumber == id);

@@ -8,14 +8,21 @@ namespace CozyHotels.Models
         [Key]
         public int OrderId { get; set; }
         [Required]
-        public int CustomerId { get; set; }
+        public string CustomerEmail { get; set; }
+        [Required]
+        [ScaffoldColumn(false)]
+        public string Password { get; set; }
         public int CarId { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Date of Order is required")]
+        [DataType(DataType.DateTime)]
         public DateTime DateOfOrder { get; set; }
+
+        [Required(ErrorMessage = "Date of Return is required")]
+        [DataType(DataType.DateTime)]
+        public DateTime DateOfReturn { get; set; }
         public int CarTypeId { get; set; }
-        [Required]
-        public string LicenseNumber { get; set; }
-        public int NumberOfDays { get; set; }
+   
 
         public Guid UniqueOrderId { get; set; }
         public Customer Customer { get; set; }

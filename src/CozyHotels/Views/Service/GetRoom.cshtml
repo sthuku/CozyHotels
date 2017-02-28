@@ -14,10 +14,11 @@
 
 <form method="post">
     <span asp-validation-summary="ModelOnly"></span>
-    @if (ViewBag.RoomRequestStatus != null)
+    @if (ViewBag.GetRoom != null)
     {
-        <div>@ViewBag.RoomRequestStatus</div>
+        <div>@ViewBag.GetRoom</div>
     }
+        <input type="submit" value="Send" />
     <div>
         <input asp-for=@Model.Customer.FirstName placeholder="First Name" />
         <span asp-validation-for=@Model.Customer.FirstName></span>
@@ -40,25 +41,30 @@
     <div>
         <input asp-for=@Model.Customer.City placeholder="City" />
         <span asp-validation-for=@Model.Customer.City></span>
+        <input asp-for=@Model.Customer.State placeholder="State" />
+        <span asp-validation-for=@Model.Customer.State></span>
     </div>
     <div>
         <input asp-for=@Model.Customer.Country placeholder="Country" />
         <span asp-validation-for=@Model.Customer.Country></span>
-    </div>
-    <div>
         <input asp-for=@Model.Customer.Zip placeholder="Zip" />
         <span asp-validation-for=@Model.Customer.Zip></span>
     </div>
     <div>
-        <input asp-for=@Model.OrderRoom.DateOfArrival placeholder="Date" />
+        <input asp-for=@Model.OrderRoom.DateOfArrival placeholder="Date of Arrival" />
         <span asp-validation-for=@Model.OrderRoom.DateOfArrival></span>
     </div>
     <div>
-        <select asp-for=@Model.OrderRoom.RoomTypeId asp-items = "Model.Rooms()">
+        <input asp-for=@Model.OrderRoom.DateOfDeperture placeholder="Date of Deperture" />
+        <span asp-validation-for=@Model.OrderRoom.DateOfDeperture></span>
+    </div>
+    <div>
+        <select asp-for=@Model.OrderRoom.RoomTypeId asp-items = "ViewBag.RoomTypes">
             
         </select>
         <span asp-validation-for=@Model.OrderRoom.RoomTypeId></span>
     </div>
+    
     <div>
         <input asp-for=@Model.Customer.Password placeholder="Password" />
         <span asp-validation-for=@Model.Customer.Password></span>
@@ -67,15 +73,9 @@
         <input type="password" id="ConfirmPassword" placeholder="Confirm Password" />
         <span id="ConfirmPasswordValidation"></span>
     </div>
-    <div>
         <input asp-for=@Model.Customer.Age type="checkbox" value="true" />I am 21+ years old.
         <span asp-validation-for=@Model.Customer.Age></span>
-    </div>
-    <div>
         <input asp-for=@Model.OrderRoom.TermsAndConditions type="checkbox" value="true" />I understand, I need to bring an Id.
         <span asp-validation-for=@Model.OrderRoom.TermsAndConditions></span>
-    </div>
-    <div>
-        <input type="submit" value="Send" />
-    </div>
+    
 </form>

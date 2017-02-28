@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -12,7 +13,6 @@ namespace CozyHotels.Models
         public int RoomTypeId { get; set; }
         [Required]
         public string RoomName { get; set; }
-        public bool IsAvailable { get; set; }
         public RoomType RoomType { get; set; }
 
         public List<SelectListItem> RoomTypes(IEnumerable<RoomType> roomTypes)

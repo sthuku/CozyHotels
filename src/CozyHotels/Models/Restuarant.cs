@@ -9,7 +9,7 @@ namespace CozyHotels.Models
         public int ReservationId { get; set; }
         public int TableId { get; set; }
         [Required]
-        public int CustomerId { get; set; }
+        public string CustomerEmail { get; set; }
         [Required]
         public DateTime Day { get; set; }
         public string Time { get; set; }

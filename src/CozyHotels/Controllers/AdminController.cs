@@ -206,7 +206,6 @@ namespace CozyHotels.Controllers
                     ViewBag.AddRoom = "A Room named "+ room.RoomName + " already exists!";
                 else
                 {
-                    room.IsAvailable = true;
                     _repository.AddRoom(room);
                     if (_repository.SaveChanges())
                     {
@@ -266,7 +265,8 @@ namespace CozyHotels.Controllers
 
         public IActionResult GetCustomerOrders(int id)
         {
-            return View(new AdminGetCustomerOrdersViewModel(_repository, id));
+            var email = _repository.GetAllCustomers().First(q => q.CustomerId == id).Email;
+            return View(new AdminGetCustomerOrdersViewModel(_repository, email));
         }
 
         public IActionResult GetCabOrders()
@@ -285,6 +285,11 @@ namespace CozyHotels.Controllers
         }
 
         public IActionResult GetFoodOrders()
+        {
+            return View(new AdminGetOrdersViewModel(_repository));
+        }
+
+        public IActionResult GetSpaAppointments()
         {
             return View(new AdminGetOrdersViewModel(_repository));
         }

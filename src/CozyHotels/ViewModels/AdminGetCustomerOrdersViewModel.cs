@@ -10,42 +10,42 @@ namespace CozyHotels.ViewModels
     public class AdminGetCustomerOrdersViewModel
     {
         private ICozyHotelsRepository _repository;
-        private int _id;
+        private string _email;
 
-        public AdminGetCustomerOrdersViewModel(ICozyHotelsRepository repository, int id)
+        public AdminGetCustomerOrdersViewModel(ICozyHotelsRepository repository, string email)
         {
             _repository = repository;
-            _id = id;
+            _email = email;
         }
 
         public IEnumerable<OrderRoom> RoomOrders()
         {
-            return _repository.GetAllRoomOrders().Where(q => q.CustomerId == _id);
+            return _repository.GetAllRoomOrders().Where(q => q.CustomerEmail == _email);
         }
 
         public IEnumerable<OrderCab> CabOrders()
         {
-            return _repository.GetAllCabOrders().Where(q => q.CustomerId == _id);
+            return _repository.GetAllCabOrders().Where(q => q.CustomerEmail == _email);
         }
 
         public IEnumerable<OrderEvent> EventOrders()
         {
-            return _repository.GetAllEventOrders().Where(q => q.CustomerId == _id);
+            return _repository.GetAllEventOrders().Where(q => q.CustomerEmail == _email);
         }
 
         public IEnumerable<OrderFood> FoodOrders()
         {
-            return _repository.GetAllFoodOrders().Where(q => q.CustomerId == _id);
+            return _repository.GetAllFoodOrders().Where(q => q.CustomerEmail == _email);
         }
 
         public IEnumerable<Restuarant> RestuarantTableReservations()
         {
-            return _repository.GetAllRestuarantReservations().Where(q => q.CustomerId == _id);
+            return _repository.GetAllRestuarantReservations().Where(q => q.CustomerEmail == _email);
         }
 
         public IEnumerable<Spa> SpaAppointments()
         {
-            return _repository.GetAllSpaAppointments().Where(q => q.CustomerId == _id);
+            return _repository.GetAllSpaAppointments().Where(q => q.CustomerEmail == _email);
         }
 
         public Invoice Invoice(Guid id)
@@ -55,7 +55,7 @@ namespace CozyHotels.ViewModels
 
         public IEnumerable<CustomerCard> CustomerCards()
         {
-            return _repository.GetAllCustomerCards().Where(q => q.CustomerId == _id);
+            return _repository.GetAllCustomerCards().Where(q => q.CustomerEmail == _email);
         }
 
         public Car Car(int id)
